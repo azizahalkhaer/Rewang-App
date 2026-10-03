@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>REWANG – Campus Journey</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="topbar">
+  <div class="logo"><span class="lg">R</span>REWANG</div>
+  <nav>
+    <button data-go="home" class="on">Beranda</button>
+    <button data-go="bantu">Bantu</button>
+    <button data-go="talang">Talang</button>
+    <button data-go="dompet">Journey</button>
+  </nav>
+  <div class="chip" id="saldoChip">Saldo Rp0</div>
+</header>
+
+<main>
+  <!-- BERANDA -->
+  <section id="home" class="tab active">
+    <div class="hero">
+      <div>
+        <small>Selamat datang di</small>
+        <h1>Rewang Campus Journey</h1>
+        <p>Saling bantu antarmahasiswa: jasa mikro cepat & dana talangan akademik tanpa bunga.</p>
+        <button class="cta" data-go="bantu">Mulai sekarang →</button>
+      </div>
+      <div class="crew"><span>🧑‍🎓</span><span>👩‍🎓</span><span>🧑‍💻</span></div>
+    </div>
+
+    <div class="home-grid">
+      <div>
+        <div class="step">
+          <h3><i class="n">1</i>Pilih pilar yang kamu butuhkan</h3>
+          <div class="opts two">
+            <button class="opt" data-go="bantu"><i class="ic g">🛍️</i><b>Rewang Bantu</b><small>Marketplace jasa mikro</small></button>
+            <button class="opt" data-go="talang"><i class="ic b">🎓</i><b>Rewang Talang</b><small>Dana talangan 0%</small></button>
+          </div>
+        </div>
+        <div class="step">
+          <h3><i class="n">2</i>Cari bantuan atau jadi Rewanger</h3>
+          <div class="opts" id="catOpts"></div>
+        </div>
+      </div>
+      <aside class="card side">
+        <h3>Ringkasan kamu</h3>
+        <div class="stats">
+          <div class="s1"><b id="stJobs">0</b><small>Job selesai</small></div>
+          <div class="s2"><b id="stUtang">Rp0</b><small>Sisa talangan</small></div>
+          <div class="s3"><b id="stLevel">1</b><small>Level kredit</small></div>
+        </div>
+        <div class="shield">🛡️ <span><b>Anti-joki akademik.</b> Dana dikelola resmi lewat institusi kampus.</span></div>
+      </aside>
+    </div>
+  </section>
+
+  <!-- REWANG BANTU -->
+  <section id="bantu" class="tab">
+    <p class="crumb">Beranda / Rewang Bantu</p>
+    <h2>Marketplace Jasa Kampus</h2>
+    <div class="filters" id="filters"></div>
+    <div class="split">
+      <div id="taskList"></div>
+      <details class="card">
+        <summary>＋ Pesan jasa baru</summary>
+        <input id="oTitle" placeholder="Contoh: Cetak 20 lembar laporan">
+        <select id="oCat"></select>
+        <input id="oFee" type="number" min="2000" step="500" placeholder="Tarif (Rp)">
+        <button class="btn" id="oSubmit">Posting Permintaan</button>
+        <p class="warn" id="oWarn" hidden></p>
+      </details>
+    </div>
+  </section>
+
+  <!-- REWANG TALANG -->
+  <section id="talang" class="tab">
+    <p class="crumb">Beranda / Rewang Talang</p>
+    <h2>Dana Talangan Akademik <span class="tag">Bunga 0%</span></h2>
+    <div class="split">
+      <div class="panel">
+        <label>Tujuan</label>
+        <select id="tPurpose">
+          <option>UKT (via Virtual Account kampus)</option>
+          <option>Kebutuhan akademik darurat</option>
+        </select>
+        <label>Nominal: <b id="tAmtLbl"></b></label>
+        <input type="range" id="tAmt" min="500000" max="10000000" step="100000" value="1500000">
+        <label>Tenor: <b id="tTenLbl"></b></label>
+        <input type="range" id="tTen" min="1" max="6" step="1" value="3">
+        <div class="sum">
+          <div><small>Plafon level kamu</small><b id="tCap"></b></div>
+          <div><small>Cicilan / bulan</small><b id="tMonthly"></b></div>
+          <div><small>Total bayar</small><b id="tTotal"></b></div>
+        </div>
+        <p class="warn" id="tWarn" hidden></p>
+        <button class="btn yellow" id="tSubmit">Ajukan Dana Talangan</button>
+      </div>
+      <div class="card info">
+        <h3>Kenapa aman?</h3>
+        <ul>
+          <li>💙 Bunga <b>0%</b>, tanpa biaya tersembunyi</li>
+          <li>🏛️ Dana dari Dana Kesejahteraan/CSR kampus</li>
+          <li>🪜 Plafon naik bertahap tiap talangan lunas</li>
+          <li>🔁 Bisa dilunasi lewat kerja di Rewang Bantu</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- JOURNEY / DOMPET -->
+  <section id="dompet" class="tab">
+    <p class="crumb">Beranda / Earn-to-Repay Journey</p>
+    <h2>Earn-to-Repay Journey</h2>
+    <div class="dash">
+      <div>
+        <div class="panel">
+          <div class="row"><span>Saldo</span><b id="wSaldo"></b></div>
+          <div class="row"><span>Sisa talangan</span><b id="wUtang"></b></div>
+          <small id="wVA"></small>
+          <label class="switch"><input type="checkbox" id="autoRepay" checked> Bayar talangan otomatis dari penghasilan Rewanger</label>
+          <button class="btn yellow" id="payCash">Bayar tunai Rp500.000</button>
+        </div>
+        <h3>Job yang sedang dikerjakan</h3>
+        <div id="myJobs"></div>
+      </div>
+      <aside>
+        <div class="card center">
+          <h3>Progres Pelunasan</h3>
+          <div class="donut" id="donut"><b id="donutTxt">0%</b></div>
+        </div>
+        <div class="card tip">💡 Selesaikan job Rewang Bantu untuk melunasi talangan tanpa uang tunai.</div>
+        <div class="card"><h3>Pencapaian</h3><div class="badges" id="badges"></div></div>
+      </aside>
+    </div>
+    <h3>Langkah perjalananmu</h3>
+    <div class="path" id="path"></div>
+  </section>
+</main>
+
+<div id="toast"></div>
+<script src="script.js"></script>
+</body>
+</html>
